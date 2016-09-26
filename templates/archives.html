@@ -1,0 +1,30 @@
+{#
+Copyright (c) 2016, Joe S. <copyright@typeonejoe.com>
+
+Permission to use, copy, modify, and distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+#}
+{% extends "base.html" %}
+{% block extra_meta %}
+        <link rel="canonical" href="{{ SITEURL }}/archives.html">
+{% endblock extra_meta %}
+{% block content %}
+	<div id="main">
+		<h1>Archives for {{ SITENAME }}</h1>
+{% for article in dates %}
+		<article class="post">
+			<header>
+				<div class="title">
+					<h2><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h2>
+				</div>
+				<div class="meta">
+					<time class="published" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+					<a href="{{ SITEURL }}/" class="author"><span class="name">{{ AUTHOR }}</span>{% if AUTHOR_AVATAR_URL %}<img src="{{ AUTHOR_AVATAR_URL }}" alt="">{% endif %}</a>
+				</div>
+			</header>
+		</article>
+{% endfor %}
+	</div>
+{% include 'sidebar.html' %}
+{% endblock %}

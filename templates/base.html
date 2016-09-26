@@ -1,0 +1,58 @@
+{#
+Copyright (c) 2016, Joe S. <copyright@typeonejoe.com>
+
+Permission to use, copy, modify, and distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block canonical %}{% endblock canonical %}
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/hypotensive.2016.09.25.01.62097111ec589963bc05b4b777e9d7d0.css">
+{% block extra_meta %}{% endblock extra_meta %}
+{% if FEED_ALL_ATOM %}
+<link href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate">
+{% endif %}
+{% if FEED_ALL_RSS %}
+<link href="{{ SITEURL }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate">
+{% endif %}
+{% if article and article.latex %}
+{{ article.latex }}
+{% endif %}
+{% block head %}
+<title>{% block extra_title %}{% endblock extra_title %}{% block title %}{{ AUTHOR }} | {{ SITENAME }}{%if TAGLINE %} | {{ TAGLINE }}{% endif %}{% endblock title %}</title>
+{% endblock head %}
+</head>
+<body{% block bodytag %}{% endblock bodytag %}>
+	<div id="wrapper">
+		<header id="header">
+			<h1><a href="{{ SITEURL }}/">{{ AUTHOR }}</a></h1>
+			<nav class="links" aria-label="pages">
+				<ul>
+					<li><a href="{{ SITEURL }}/">Home</a></li>{% for title, link in MENUITEMS %}<li><a href="{{ link }}">{{ title }}</a></li>{% endfor %}
+				</ul>
+			</nav>
+			<nav class="main" aria-label="main label">
+				<ul>
+					<li class="menu">
+						<a class="fa-bars" href="#menu">Menu</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+{% block content %}
+{% endblock %}				
+		<nav id="menu" aria-label="pages menu">
+			<section>
+				<ul class="links">
+					<li><h6><a href="{{ SITEURL }}/">Home</a></h6></li>{% for title, link in MENUITEMS %}<li><h6><a href="{{ link }}">{{ title }}</a></h6></li>{% endfor %}
+				</ul>
+			</section>
+		</nav>
+	</div>
+<script type="text/javascript" src="{{ SITEURL }}/theme/js/hypotensive.2016.09.25.01.545b8379b2bfca11d456072852b4d2a5.js" defer></script>
+</body>
+</html>

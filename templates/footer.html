@@ -1,0 +1,21 @@
+{#
+Copyright (c) 2016, Joe S. <copyright@typeonejoe.com>
+
+Permission to use, copy, modify, and distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+#}
+	<section id="footer" aria-label="footer">
+		<ul class="icons">
+{% if PELICAN_TWITTER_CARD_CREATOR %}
+			<li><a href="https://twitter.com/{{ PELICAN_TWITTER_CARD_CREATOR }}" class="fa fa-twitter"><span class="label">Twitter</span></a></li>
+{% endif %}
+{% if FEED_ALL_RSS %}
+			<li><a href="{{ SITEURL }}/{{ FEED_ALL_RSS }}" class="fa-rss"><span class="label">RSS</span></a></li>
+{% endif %}
+			<li><a href="{{ SITEURL }}/contact/" class="fa fa-envelope"><span class="label">Email</span></a></li>
+		</ul>
+		<p class="copyright">{{ PELICAN_COPYRIGHT }}</p>
+		<p class="copyright">HTML Theme/Template Info: <a href="https://typeonejoe.com/hypotensive-theme/">Hypotensive Theme</a> by <a href="https://typeonejoe.com/">Type 1 Joe</a>.<br>
+		<a href="https://typeonejoe.com/hypotensive-theme/">Hypotensive Theme</a> is based in part on <a href="http://html5up.net/">HTML5UP</a>'s <a href="http://html5up.net/">Future Imperfect</a> which itself is Free for personal and commercial use under the CCA 3.0 license (<a href="http://html5up.net/license">html5up.net/license</a>)</p>
+	</section>

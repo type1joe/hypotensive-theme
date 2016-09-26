@@ -1,0 +1,59 @@
+{#
+Copyright (c) 2016, Joe S. <copyright@typeonejoe.com>
+
+Permission to use, copy, modify, and distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+#}
+{% extends "base.html" %}
+{% block canonical %}
+<link rel="canonical" href="{{ SITEURL }}/">
+{% endblock canonical %}
+{% block extra_meta %}
+<meta name="description" content="{{ AUTHOR }} | {{ SITENAME }}{% if TAGLINE %} | {{ TAGLINE }}{% endif %}">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ SITENAME }}">
+<meta property="og:description" content="{{ AUTHOR }} | {{ SITENAME }}{% if TAGLINE %} | {{ TAGLINE }}{% endif %}">
+<meta property="og:url" content="{{ SITEURL }}/">
+<meta property="og:site_name" content="{{ SITENAME }}">
+{% if PELICAN_TWITTER_CARD_SITE %}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:description" content="{{ AUTHOR }} | {{ SITENAME }}{% if TAGLINE %} | {{ TAGLINE }}{% endif %}">
+<meta name="twitter:title" content="{{ SITENAME }}">
+<meta name="twitter:site" content="@{{ PELICAN_TWITTER_CARD_SITE }}">
+<meta name="twitter:url" content="{{ SITEURL }}/">
+{% endif %}
+{% endblock extra_meta %}
+{% block content %}
+	<div id="main">
+{% for article in articles_page.object_list %}
+		<article class="post">
+			<header>
+				<div class="title">
+					<h2><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title }}">{{ article.title }}</a></h2>
+				</div>
+				<div class="meta">
+					<time class="published" datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+					<a href="{{ SITEURL }}/" class="author"><span class="name">{{ AUTHOR }}</span>{% if AUTHOR_AVATAR_URL %}<img src="{{ AUTHOR_AVATAR_URL }}" alt="{{ AUTHOR }}">{% endif %}</a>
+				</div>
+			</header>
+
+{{ article.summary }}
+
+			<footer>
+				<ul class="actions">
+					<li><a href="{{ SITEURL }}/{{ article.url }}" class="button big">Continue Reading</a></li>
+				</ul>
+				<ul class="stats">
+				{% if article.tags %}{% for tag in article.tags %}
+					<li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
+				{% endfor %}{% endif %}
+				</ul>
+			</footer>
+		</article>
+
+{% endfor %}
+	</div>
+{% include 'sidebar.html' %}
+{% endblock content %}

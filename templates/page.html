@@ -1,0 +1,45 @@
+{#
+Copyright (c) 2016, Joe S. <copyright@typeonejoe.com>
+
+Permission to use, copy, modify, and distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+#}
+{% extends "base.html" %}
+{% block bodytag %} class="single"{% endblock bodytag %}
+{% block canonical %}
+<link rel="canonical" href="{{ SITEURL }}/{{ page.url }}">
+{% endblock canonical %}
+{% block extra_meta %}
+<meta name="description" content="{{ SITENAME }}: {{ page.title }}">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ SITENAME }}{% if TAGLINE %} | {{ TAGLINE }}{% endif %}: {{ page.title }}">
+<meta property="og:description" content="{{ page.title }}">
+<meta property="og:url" content="{{ SITEURL }}/{{ page.url }}">
+<meta property="og:site_name" content="{{ SITENAME }}{% if TAGLINE %} | {{ TAGLINE }}{% endif %}">
+{% if PELICAN_TWITTER_CARD_SITE %}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:description" content="{{ page.title }}">
+<meta name="twitter:title" content="{{ SITENAME }}{% if TAGLINE %} | {{ TAGLINE }}{% endif %}: {{ page.title }}">
+<meta name="twitter:site" content="@{{ PELICAN_TWITTER_CARD_SITE }}">
+<meta name="twitter:url" content="{{ SITEURL }}/{{ page.url }}">
+{% endif %}
+{% endblock extra_meta %}
+{% block extra_title %}{{ page.title }} | {% endblock extra_title %}
+{% block content %}
+	<div id="main">
+		<article class="post">
+			<header>
+				<div class="title">
+					<h2><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></h2>
+				</div>
+			</header>
+	
+{{ page.content }}
+		
+		</article>
+	</div>
+
+{% include 'footer.html' %}
+{% endblock content %}
